@@ -1,3 +1,87 @@
+function loadScriptAsModuleCommon(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+
+        script.src = src;
+        script.onload = () => resolve(true);
+        script.onerror = () => reject(new Error(`Failed to load: ${src}`));
+        script.type = "module";
+
+        document.head.appendChild(script);
+    });
+};
+
+async function ensureKSComponents() {
+    async function tryMenu() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-menuItem/Public/v1/KSMenuItem.js");
+
+            console.log("KSMenuItem loaded from git : ks-web-comp-menuItem-1");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    async function tryNav() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-nav/Public/v4/ksCompNav.js");
+
+            console.log("ksCompNav loaded from git : ks-web-comp-nav-4");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    async function tryVertical() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-vertical/Public/v1.4/KSVerticalComp.js");
+
+            console.log("KSVerticalComp loaded from git : ks-web-comp-vertical-1.4");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    async function tryTableFoot() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table-foot/Public/v2.2/KSTableFoot.js");
+
+            console.log("KSTableFoot loaded from git : ks-web-comp-table-foot-2.2");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    async function tryTable() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table/Public/v2.5/KSTableComponents.js");
+
+            console.log("KSTableComponents loaded from git : ks-web-comp-table-2.5");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    // tryMenu().then();
+    // tryNav().then();
+    tryTable().then();
+
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa----------");
+
+    // tryVertical().then();
+    // tryTableFoot().then();
+};
+
 async function ensureTailwind() {
     function loadCss(href) {
         return new Promise((resolve, reject) => {
@@ -15,7 +99,8 @@ async function ensureTailwind() {
 
     const tryLocal = async () => {
         try {
-            await loadCss("./tailwind-3.css");
+            // await loadCss("./tailwind-3.css");
+            await loadCss("./tailwind-3-min.css");
 
             console.log("Tailwind loaded locally");
             return true;
@@ -53,28 +138,15 @@ async function ensureTailwind() {
 };
 
 async function ensureKSHeader() {
-    function loadScriptAsModule(src) {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-
-            script.src = src;
-            script.onload = () => resolve(true);
-            script.onerror = () => reject(new Error(`Failed to load: ${src}`));
-            script.type = "module";
-
-            document.head.appendChild(script);
-        });
-    };
-
     function isKSTableLoaded() {
         return !!window.KSHeader;
     };
 
     async function tryGitHub() {
         try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-header-dom/Public/v4.7/ksheader.js");
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/tailwind-header-dom/Public/v5.10/ksheader.js");
 
-            console.log("KSHeader loaded from git : tailwind-header-dom");
+            console.log("KSHeader loaded from git : tailwind-header-dom-5.10");
 
             if (fromPromise) return true;
         } catch { return false };
@@ -84,9 +156,9 @@ async function ensureKSHeader() {
 
     async function tryLocal() {
         try {
-            const fromPromise = await loadScriptAsModule("/header/v8/initHeader.js");
+            const fromPromise = await loadScriptAsModuleCommon("/header/v11/initHeader.js");
 
-            console.log("KSHeader loaded from local : header-v8");
+            console.log("KSHeader loaded from local : header-v11");
 
             if (fromPromise) return true;
         } catch { return false };
@@ -96,60 +168,6 @@ async function ensureKSHeader() {
 
     if (isKSTableLoaded()) {
         console.log("KSHeader loaded from Firefox Extension");
-        return;
-    };
-
-    if (await tryLocal()) return;
-
-    if (await tryGitHub()) return;
-
-    throw new Error("KSTable could not be loaded");
-};
-
-async function ensureKSTable() {
-    function loadScriptAsModule(src) {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-
-            script.src = src;
-            script.onload = () => resolve(true);
-            script.onerror = () => reject(new Error(`Failed to load: ${src}`));
-            script.type = "module";
-
-            document.head.appendChild(script);
-        });
-    };
-
-    function isKSTableLoaded() {
-        return !!window.KSTable;
-    };
-
-    async function tryGitHub() {
-        try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom/Public/v12/kstable.js");
-
-            console.log("KSTable loaded from Local Server");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    async function tryLocal() {
-        try {
-            const fromPromise = await loadScriptAsModule("/KSTable/v1/entry.js");
-
-            console.log("KSTable loaded from Local Server");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    if (isKSTableLoaded()) {
-        console.log("KSTable loaded from Firefox Extension");
         return;
     };
 
@@ -175,14 +193,16 @@ async function ensureKSTableComp() {
     };
 
     function isKSTableLoaded() {
+        // console.log("aaaaaaaa : ", window.KSTableComp, window.KSHeader);
+
         return !!window.KSTableComp;
     };
 
     async function tryGitHub() {
         try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v6/kstable.js");
+            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v8/kstable.js");
 
-            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-4");
+            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-8");
 
             if (fromPromise) return true;
         } catch { return false };
@@ -192,87 +212,37 @@ async function ensureKSTableComp() {
 
     async function tryLocal() {
         try {
-            const fromPromise = await loadScriptAsModule("/TableComp/v5/entry.js");
+            const fromPromise = await loadScriptAsModule("/TableComp/v10/entry.js");
 
-            console.log("KSTableComp loaded from Local Server : TableComp/v5");
+            console.log("KSTableComp---------- loaded from Local Server : TableComp/v10");
 
             if (fromPromise) return true;
-        } catch { return false };
+        } catch {
+            console.log("KSTableComp failed from Local Server : TableComp/v7");
+
+            return false
+        };
 
         return false;
     };
 
     if (isKSTableLoaded()) {
-        console.log("KSTable loaded from Firefox Extension");
+        console.log("KSTableComp-- loaded from Firefox Extension");
         return;
     };
+    console.log("------------");
 
     if (await tryLocal()) return;
 
-    if (await tryGitHub()) return;
+    // if (await tryGitHub()) return;
 
     throw new Error("KSTableComp could not be loaded");
 };
 
-async function ensureKSVertical() {
-    function loadScriptAsModule(src) {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
+ensureTailwind().then();
 
-            script.src = src;
-            script.onload = () => resolve(true);
-            script.onerror = () => reject(new Error(`Failed to load: ${src}`));
-            script.type = "module";
+ensureKSComponents().then();
 
-            document.head.appendChild(script);
-        });
-    };
-
-    function isKSVerticalLoaded() {
-        return !!window.KSVertical;
-    };
-
-    async function tryGitHub() {
-        try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-vertical-dom/Public/v3/ksvertical.js");
-
-            console.log("KSVertical loaded from git : tailwind-vertical-dom");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    async function tryLocal() {
-        try {
-            const fromPromise = await loadScriptAsModule("/TableComp/v4/entry.js");
-
-            console.log("KSVertical loaded from Local Server : TableComp/v1");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    if (isKSVerticalLoaded()) {
-        console.log("KSVertical loaded from Firefox Extension");
-        return;
-    };
-
-    if (await tryLocal()) return;
-
-    if (await tryGitHub()) return;
-
-    throw new Error("KSVertical could not be loaded");
-};
-
-await ensureTailwind();
 await ensureKSHeader();
 
-// ensureKSTable().then();
-
-ensureKSTableComp().then();
-
-ensureKSVertical().then();
+await ensureKSTableComp();
