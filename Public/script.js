@@ -200,9 +200,9 @@ async function ensureKSTableComp() {
 
     async function tryGitHub() {
         try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v8/kstable.js");
+            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v10/kstablecomp.js");
 
-            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-8");
+            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-10");
 
             if (fromPromise) return true;
         } catch { return false };
@@ -214,11 +214,11 @@ async function ensureKSTableComp() {
         try {
             const fromPromise = await loadScriptAsModule("/TableComp/v10/entry.js");
 
-            console.log("KSTableComp---------- loaded from Local Server : TableComp/v10");
+            console.log("KSTableComp loaded from Local Server : TableComp/v10");
 
             if (fromPromise) return true;
         } catch {
-            console.log("KSTableComp failed from Local Server : TableComp/v7");
+            console.log("KSTableComp failed from Local Server : TableComp/v10");
 
             return false
         };
@@ -230,11 +230,11 @@ async function ensureKSTableComp() {
         console.log("KSTableComp-- loaded from Firefox Extension");
         return;
     };
-    console.log("------------");
+    // console.log("------------");
 
     if (await tryLocal()) return;
 
-    // if (await tryGitHub()) return;
+    if (await tryGitHub()) return;
 
     throw new Error("KSTableComp could not be loaded");
 };
