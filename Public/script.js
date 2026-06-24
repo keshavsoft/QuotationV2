@@ -171,7 +171,7 @@ async function ensureKSHeader() {
         return;
     };
 
-    if (await tryLocal()) return;
+    // if (await tryLocal()) return;
 
     if (await tryGitHub()) return;
 
@@ -241,7 +241,15 @@ async function ensureKSTableComp() {
 
 ensureTailwind().then();
 
-ensureKSComponents().then();
+// await ensureTailwind();
+
+await ensureKSComponents();
+
+// ensureKSComponents().then(fromPromise => {
+//     // ensureKSHeader().then();
+
+//     // ensureKSTableComp().then();
+// });
 
 await ensureKSHeader();
 

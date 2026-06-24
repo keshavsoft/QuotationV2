@@ -10,25 +10,14 @@
     },
     "items": [
         {
-            "text": "Home",
-            "id": "HomeHtmlId",
-            "icon": [],
-            "uiClasses": {
-                "aClass": "",
-                "svgDivClass": "size-10"
-            },
-            "svgName": "home",
-            "href": "../../../index.html"
-        },
-        {
-            "text": "Table",
+            "text": "Create",
             "id": "TableHtmlId",
             "icon": [],
             "uiClasses": {
                 "aClass": "",
                 "svgDivClass": "size-10"
             },
-            "svgName": "home"
+            "svgName": "serverStack"
         },
         {
             "text": "Print",
