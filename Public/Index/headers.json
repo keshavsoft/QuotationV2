@@ -29,6 +29,17 @@
                 "svgDivClass": "size-10"
             },
             "svgName": "home"
+        },
+        {
+            "text": "Print",
+            "id": "PrintHtmlId",
+            "icon": [],
+            "uiClasses": {
+                "aClass": "",
+                "svgDivClass": "size-10"
+            },
+            "svgName": "home",
+            "href":"../Print/index.html"
         }
     ]
 }
