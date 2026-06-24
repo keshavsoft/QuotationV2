@@ -17,7 +17,7 @@ app.use('/api', routerFromapi);
 setupRoutes(app);
 
 const { port } = startServer(app);
-console.log("process.env : ", process.env);
+// console.log("process.env : ", process.env);
 
 if (process.env.OPEN_BROWSER === "true") {
     exec(`start http://localhost:${port}`);
