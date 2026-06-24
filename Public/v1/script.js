@@ -60,8 +60,22 @@ async function ensureKSComponents() {
         return false;
     };
 
-    tryMenu().then();
-    tryNav().then();
+    async function tryTable() {
+        try {
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table/Public/v2.5/KSTableComponents.js");
+
+            console.log("KSTableComponents loaded from git : ks-web-comp-table-2.5");
+
+            if (fromPromise) return true;
+        } catch { return false };
+
+        return false;
+    };
+
+    // tryMenu().then();
+    // tryNav().then();
+    tryTable().then();
+
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaa----------");
 
     // tryVertical().then();

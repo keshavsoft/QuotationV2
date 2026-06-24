@@ -3,8 +3,8 @@
 // import "./components/TableRow/v1/index.js";
 // import "./components/TableFoot/v8/index.js";
 
-import "../../components/TableRow/v1/index.js";
-import "../../components/TableFoot/v9/index.js";
+// import "../../components/TableRow/v1/index.js";
+// import "../../components/TableFoot/v9/index.js";
 
 import { createState } from "./HtmlState/start.js";
 import { getDomManipulation } from "./DomManipulation/start.js";
