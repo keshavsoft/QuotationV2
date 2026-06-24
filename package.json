@@ -11,13 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@keshavsoft/kschema": "^1.17.12",
-    "@yao-pkg/pkg": "^6.20.0",
     "body-parser": "^2.2.0",
     "dotenv": "^17.4.2",
     "express": "^5.1.0",
-    "lowdb": "^7.0.1",
-    "nodemailer": "^9.0.0"
+    "lowdb": "^7.0.1"
   },
   "devDependencies": {
     "@keshavsoft/kschema-api-gen": "^1.11.1",
@@ -26,6 +23,7 @@
     "json-crud-ui-components": "^1.5.1",
     "json-crud-ui-init": "^1.4.1",
     "tailwind-header-dom": "^5.8.3",
-    "tailwind-todo": "^1.5.9"
+    "tailwind-todo": "^1.5.9",
+    "@yao-pkg/pkg": "^6.20.0"
   }
 }
