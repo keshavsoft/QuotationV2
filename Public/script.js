@@ -12,59 +12,11 @@ function loadScriptAsModuleCommon(src) {
 };
 
 async function ensureKSComponents() {
-    async function tryMenu() {
-        try {
-            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-menuItem/Public/v1/KSMenuItem.js");
-
-            console.log("KSMenuItem loaded from git : ks-web-comp-menuItem-1");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    async function tryNav() {
-        try {
-            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-nav/Public/v4/ksCompNav.js");
-
-            console.log("ksCompNav loaded from git : ks-web-comp-nav-4");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    async function tryVertical() {
-        try {
-            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-vertical/Public/v1.4/KSVerticalComp.js");
-
-            console.log("KSVerticalComp loaded from git : ks-web-comp-vertical-1.4");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
-    async function tryTableFoot() {
-        try {
-            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table-foot/Public/v2.2/KSTableFoot.js");
-
-            console.log("KSTableFoot loaded from git : ks-web-comp-table-foot-2.2");
-
-            if (fromPromise) return true;
-        } catch { return false };
-
-        return false;
-    };
-
     async function tryTable() {
         try {
-            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table/Public/v2.5/KSTableComponents.js");
+            const fromPromise = await loadScriptAsModuleCommon("https://keshavsoft.github.io/ks-web-comp-table/Public/v2.6/KSTableComponents.js");
 
-            console.log("KSTableComponents loaded from git : ks-web-comp-table-2.5");
+            console.log("KSTableComponents loaded from git : ks-web-comp-table-2.6");
 
             if (fromPromise) return true;
         } catch { return false };
@@ -76,7 +28,7 @@ async function ensureKSComponents() {
     // tryNav().then();
     tryTable().then();
 
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa----------");
+    // console.log("aaaaaaaaaaaaaaaaaaaaaaaaa----------");
 
     // tryVertical().then();
     // tryTableFoot().then();
@@ -212,9 +164,9 @@ async function ensureKSTableComp() {
 
     async function tryLocal() {
         try {
-            const fromPromise = await loadScriptAsModule("/TableComp/v10/entry.js");
+            const fromPromise = await loadScriptAsModule("/TableComp/v11/entry.js");
 
-            console.log("KSTableComp loaded from Local Server : TableComp/v10");
+            console.log("KSTableComp loaded from Local Server : TableComp/v11");
 
             if (fromPromise) return true;
         } catch {
