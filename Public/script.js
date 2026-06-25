@@ -152,9 +152,9 @@ async function ensureKSTableComp() {
 
     async function tryGitHub() {
         try {
-            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v10/kstablecomp.js");
+            const fromPromise = await loadScriptAsModule("https://keshavsoft.github.io/tailwind-table-dom-comp/Public/v11/kstablecomp.js");
 
-            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-10");
+            console.log("KSTableComp loaded from git : tailwind-table-dom-comp-11");
 
             if (fromPromise) return true;
         } catch { return false };
